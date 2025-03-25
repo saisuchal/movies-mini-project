@@ -1,0 +1,19 @@
+.social-handles-div {
+  width: 100%;
+  margin-bottom: 3vh;
+}
+.social-handles-icon {
+  width: 20px;
+  height: 20px;
+}
+.social-button {
+  background-color: transparent;
+  color: white;
+  border: 0px;
+}
+
+.footer {
+  text-align: center;
+  color: white;
+  padding-bottom: 5vw;
+}

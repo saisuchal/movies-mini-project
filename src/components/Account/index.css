@@ -1,0 +1,32 @@
+.profile-page {
+  min-height: 100vh;
+  background-color: #131313;
+}
+
+.profile-div {
+  padding: 5vw;
+  padding-top: 2vw;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: flex-row;
+}
+
+.para-margin {
+  margin-right: 2vw;
+  font-weight: 800;
+}
+
+.logout-button {
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  border: 0px;
+  font-size: 16px;
+  font-weight: 700;
+}

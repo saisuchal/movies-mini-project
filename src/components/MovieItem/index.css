@@ -1,0 +1,10 @@
+.poster-div {
+  margin: 0px;
+  width: 20%;
+  padding: 20px;
+}
+.poster {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}

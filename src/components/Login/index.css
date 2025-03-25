@@ -1,0 +1,135 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+      116.64deg,
+      rgba(0, 0, 0, 0.8) 0.46%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url('https://res.cloudinary.com/dahbfvpdn/image/upload/v1742325694/19edc15e3aa6b6a1301fd6667bf2509e_mjprnr.jpg');
+  background-size: cover;
+}
+.movies-logo {
+  position: absolute;
+  top: 5%;
+  bottom: 90%;
+  right: 80%;
+  left: 10%;
+}
+.login-form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 8px;
+  padding: 30px;
+  width: 35vw;
+  max-width: 500px;
+}
+.login-heading {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  width: 100%;
+}
+.label-text {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.input-box {
+  background-color: grey !important;
+  color: white;
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px solid;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  top: 24px;
+  outline: none;
+}
+.password-box {
+  background-color: transparent !important;
+  color: white;
+  border: 0px solid;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  top: 24px;
+  outline: none;
+  width: 90%;
+}
+
+.login-button {
+  margin-top: 20px;
+  padding: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #e50914;
+  color: white;
+  border: 0px solid;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.show-password-button {
+  background-color: transparent;
+  color: rgb(51, 45, 45);
+  border: 0px;
+  width: 10%;
+}
+
+.error-message {
+  visibility: hidden;
+  color: red;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0px;
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .login-form-div {
+    width: 40vw;
+  }
+  .login-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .login-page {
+    background: #000000;
+  }
+  .login-form-div {
+    width: 90vw;
+    align-items: flex-start;
+    background: #000000;
+  }
+  .login-form {
+    width: 100%;
+  }
+  .movies-logo {
+    width: 100px;
+  }
+}

@@ -1,0 +1,21 @@
+.home-page {
+  min-height: 120vh;
+  background-color: #131313;
+}
+.slides-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align:center;
+  min-height: 50vh;
+  background-color: #131313;
+  padding: 5vw;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+}
+
+@media screen and (max-width: 767px) {
+  .slides-div {
+    margin: 5vw;
+  }
+}

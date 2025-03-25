@@ -1,0 +1,81 @@
+.random-movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 50vh;
+  width: 100vw;
+  padding: 7vw;
+  padding-bottom: 4vw;
+  color: white;
+}
+.random-overview-div {
+  position: relative;
+}
+.random-title {
+  font-size: 72px;
+}
+.random-overview {
+  width: 35vw;
+  height: 10vh;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+.random-movie-info {
+  display: flex;
+  width: 15vw;
+  justify-content: space-between;
+}
+
+.play-button {
+  padding: 16px;
+  border: 0px;
+  border-radius: 5px;
+  font-weight: 1000;
+  font-size: 26px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 2559px) {
+  .random-title {
+    font-size: 34px;
+  }
+  .random-overview {
+    width: 40vw;
+    font-size: 16px;
+  }
+  .play-button {
+    font-size: 14px;
+    padding: 14px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .random-title {
+    font-size: 26px;
+  }
+  .random-overview {
+    width: 40vw;
+    font-size: 14px;
+  }
+  .play-button {
+    font-size: 12px;
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .random-title {
+    font-size: 22px;
+  }
+  .random-overview {
+    width: 80vw;
+    font-size: 12px;
+  }
+  .play-button {
+    font-size: 12px;
+    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}

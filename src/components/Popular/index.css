@@ -1,0 +1,16 @@
+.popular-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 5vw;
+  padding-top: 0px;
+  overflow-y: scroll;
+  height: auto;
+}
+
+.popular-page {
+  min-height: 100vh;
+  background-color: #131313;
+}
