@@ -1,5 +1,5 @@
 import {format} from 'date-fns'
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Cookies from 'js-cookie'
 import './index.css'
 import Header from '../Header'
@@ -20,22 +20,31 @@ class MovieItemDetails extends Component {
   state = {
     movieDetailsData: {},
     detailsApiStatus: apiStatusConstants.initial,
+    isMounted: false,
   }
 
   componentDidMount() {
+    this.setState({isMounted: true})
     this.fetchData()
   }
 
   componentDidUpdate(prevProps) {
-    console.log('update')
     const {match} = this.props
     const {params} = match
     const {movieId} = params
-    console.log(movieId)
-    if (movieId !== prevProps.match.params.movieId) {
-      console.log('reload')
-      window.location.reload()
+    const {detailsApiStatus, isMounted} = this.state
+    if (movieId !== prevProps.match.params.movieId && isMounted) {
+      if (
+        detailsApiStatus === apiStatusConstants.success ||
+        detailsApiStatus === apiStatusConstants.failure
+      ) {
+        this.fetchData()
+      }
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({isMounted: false})
   }
 
   fetchData = async () => {
@@ -67,7 +76,6 @@ class MovieItemDetails extends Component {
         this.setState({detailsApiStatus: apiStatusConstants.failure})
       }
     } catch (e) {
-      console.log(e)
       this.setState({detailsApiStatus: apiStatusConstants.failure})
     }
   }

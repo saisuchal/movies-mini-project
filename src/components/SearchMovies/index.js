@@ -18,6 +18,7 @@ class SearchMovies extends Component {
     apiStatus: apiStatusConstants.initial,
     searchData: [],
     searchValue: '',
+    isMounted: false,
   }
 
   componentDidMount() {
@@ -25,6 +26,7 @@ class SearchMovies extends Component {
     const {search} = location
     const searchParams = new URLSearchParams(search)
     const searchParameter = searchParams.get('search')
+    this.setState({isMounted: true})
     if (searchParameter !== null) {
       this.fetchSearchData()
     }
@@ -35,12 +37,17 @@ class SearchMovies extends Component {
     const prevSearchParams = new URLSearchParams(prevSearch)
     const prevSearchParameter = prevSearchParams.get('search')
     const {location} = this.props
+    const {isMounted} = this.state
     const {search} = location
     const searchParams = new URLSearchParams(search)
     const searchParameter = searchParams.get('search')
-    if (searchParameter !== prevSearchParameter) {
+    if (searchParameter !== prevSearchParameter && isMounted) {
       this.fetchSearchData()
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({isMounted: false})
   }
 
   fetchSearchData = async () => {
@@ -49,7 +56,10 @@ class SearchMovies extends Component {
     const {location} = this.props
     const searchParams = new URLSearchParams(location.search)
     const searchValue = searchParams.get('search')
-    const searchUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchValue}`
+    const searchUrl =
+      searchValue === undefined
+        ? 'https://apis.ccbp.in/movies-app/movies-search?search= '
+        : `https://apis.ccbp.in/movies-app/movies-search?search=${searchValue}`
     const options = {
       method: 'GET',
       headers: {

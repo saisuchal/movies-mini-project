@@ -43,7 +43,7 @@ class Home extends Component {
     const trendingResponse = await fetch(trendingUrl, options)
     const trending = await trendingResponse.json()
     if (trendingResponse.ok) {
-      const trendingData = this.camelCase(trending.results)
+      const trendingData = this.homeCamelCase(trending.results)
       this.setState({
         trendingData,
         trendingApiStatus: apiStatusConstants.success,
@@ -68,7 +68,7 @@ class Home extends Component {
     const originalsResponse = await fetch(originalsUrl, options)
     const originals = await originalsResponse.json()
     if (originalsResponse.ok) {
-      const originalsData = this.camelCase(originals.results)
+      const originalsData = this.homeCamelCase(originals.results)
       const randomMovie =
         originalsData[Math.floor(Math.random() * originalsData.length)]
       this.setState({
@@ -81,7 +81,7 @@ class Home extends Component {
     }
   }
 
-  camelCase = data => {
+  homeCamelCase = data => {
     const transformedData = data.map(item => ({
       backdropPath: item.backdrop_path,
       id: item.id,
