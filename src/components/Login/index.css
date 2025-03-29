@@ -75,7 +75,7 @@
   line-height: 24px;
   top: 24px;
   outline: none;
-  width:85%;
+  width: 85%;
 }
 
 .login-button {
@@ -142,10 +142,10 @@ input:-webkit-autofill:focus {
   .error-message {
     font-size: 14px;
   }
-  .password-box{
-    width:80%;
+  .password-box {
+    width: 80%;
   }
-  .show-password-button{
+  .show-password-button {
     width: 20%;
   }
 }

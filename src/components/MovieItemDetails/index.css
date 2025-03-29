@@ -12,10 +12,10 @@
   flex-wrap: wrap;
   overflow-x: auto;
   min-height: 25vh;
-  max-height:40vh;
+  max-height: 40vh;
   width: 100%;
   padding: 5vw;
-  text-align:start;
+  text-align: start;
 }
 
 .similar-movies {
@@ -25,7 +25,6 @@
   padding: 5vw;
   padding-top: 0px;
   list-style-type: none;
-  
 }
 
 .detail-heading {
@@ -36,7 +35,7 @@
 .detail-list {
   list-style-type: none;
   padding: 0px;
-  text-align:start;
+  text-align: start;
 }
 .detail-list-item {
   font-size: 18px;
