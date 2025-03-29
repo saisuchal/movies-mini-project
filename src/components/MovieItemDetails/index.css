@@ -7,19 +7,15 @@
 .movie-details {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  height: 25vh;
-  width: 100%;
   justify-content: flex-start;
-  align-content: space-around;
-}
-.social-handles-div {
-  background-color: #131313;
-  justify-items: center;
-  color: white;
-}
-.social-handles {
-  width: 250px;
+  align-items: space-around;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  min-height: 25vh;
+  max-height:40vh;
+  width: 100%;
+  padding: 5vw;
+  text-align:start;
 }
 
 .similar-movies {
@@ -29,37 +25,50 @@
   padding: 5vw;
   padding-top: 0px;
   list-style-type: none;
+  
 }
 
 .detail-heading {
-  font-size: 18px;
+  font-size: 24px;
   color: grey;
   font-weight: 600;
 }
 .detail-list {
   list-style-type: none;
   padding: 0px;
+  text-align:start;
 }
 .detail-list-item {
-  font-size: 16px;
+  font-size: 18px;
+  margin: 0px;
+}
+.detail-list-item p {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 2559px) {
-  .social-handles {
-    width: 200px;
+  .detail-heading {
+    font-size: 18px;
+  }
+  .detail-list-item {
+    font-size: 14px;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .social-handles {
-    width: 150px;
+  .detail-heading {
+    font-size: 16px;
+  }
+  .detail-list-item {
+    font-size: 14px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .social-handles {
-    width: 100px;
+  .detail-heading {
+    font-size: 12px;
   }
-  .slides-div {
-    margin: 5vw;
+  .detail-list-item {
+    font-size: 12px;
   }
 }

@@ -1,16 +1,9 @@
 import {format} from 'date-fns'
 import './index.css'
-import LoaderView from '../LoaderView'
-
-const apiStatusConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  inProgress: 'IN_PROGRESS',
-}
 
 const MovieItemDetailsPoster = props => {
-  const {movieDetails, apiStatus} = props
+  const {movieDetails} = props
+
   const {
     title,
     overview,
@@ -45,7 +38,7 @@ const MovieItemDetailsPoster = props => {
         </p>
       </div>
       <div className="details-overview-div">
-        <p style={{margin: '0px'}}>{overview}</p>
+        <p className="details-overview">{overview}</p>
       </div>
       <button type="button" className="play-button">
         Play

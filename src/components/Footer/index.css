@@ -1,6 +1,5 @@
 .social-handles-div {
   width: 100%;
-  margin-bottom: 3vh;
 }
 .social-handles-icon {
   width: 20px;
@@ -13,7 +12,12 @@
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: white;
-  padding-bottom: 5vw;
+  padding: 2vw;
+  height: 15vh;
 }

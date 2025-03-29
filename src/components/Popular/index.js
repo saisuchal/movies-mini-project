@@ -31,16 +31,13 @@ class Popular extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    try {
-      const popularResponse = await fetch(popularUrl, options)
-      const popular = await popularResponse.json()
-      if (popularResponse.ok) {
-        const popularData = this.camelCase(popular.results)
-        this.setState({popularData, apiStatus: apiStatusConstants.success})
-      } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
-      }
-    } catch (e) {
+
+    const popularResponse = await fetch(popularUrl, options)
+    const popular = await popularResponse.json()
+    if (popularResponse.ok) {
+      const popularData = this.camelCase(popular.results)
+      this.setState({popularData, apiStatus: apiStatusConstants.success})
+    } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
@@ -69,8 +66,6 @@ class Popular extends Component {
     switch (true) {
       case apiStatus === apiStatusConstants.success:
         return popularView
-      case apiStatus === apiStatusConstants.inProgress:
-        return <LoaderView height="80vh" />
       case apiStatus === apiStatusConstants.failure:
         return (
           <FailureView
@@ -80,6 +75,8 @@ class Popular extends Component {
             imgUrl="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742840933/Background-Complete_nhwfz2.png"
           />
         )
+      case apiStatus === apiStatusConstants.inProgress:
+        return <LoaderView height="80vh" />
       default:
         return null
     }

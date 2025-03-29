@@ -1,5 +1,5 @@
 import {format} from 'date-fns'
-import {Component} from 'react'
+import React, {Component} from 'react'
 import Cookies from 'js-cookie'
 import './index.css'
 import Header from '../Header'
@@ -27,10 +27,13 @@ class MovieItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log('update')
     const {match} = this.props
     const {params} = match
     const {movieId} = params
+    console.log(movieId)
     if (movieId !== prevProps.match.params.movieId) {
+      console.log('reload')
       window.location.reload()
     }
   }
@@ -51,13 +54,11 @@ class MovieItemDetails extends Component {
       },
     }
 
+    const movieDetailsResponse = await fetch(movieDetailsUrl, options)
+    const movieDetails = await movieDetailsResponse.json()
     try {
-      const movieDetailsResponse = await fetch(movieDetailsUrl, options)
-      const movieDetails = await movieDetailsResponse.json()
-      console.log(movieDetails)
       if (movieDetailsResponse.ok) {
         const movieDetailsData = this.camelCase(movieDetails.movie_details)
-        console.log(movieDetailsData)
         this.setState({
           movieDetailsData,
           detailsApiStatus: apiStatusConstants.success,
@@ -151,7 +152,6 @@ class MovieItemDetails extends Component {
   )
 
   formatSimilarMoviesList = data => {
-    console.log(data)
     const transformedData = data.map(item => ({
       backdropPath: item.backdrop_path,
       id: item.id,
@@ -195,9 +195,11 @@ class MovieItemDetails extends Component {
               {this.genericList(budget, 'Budget')}
               {this.genericList(this.formatDate(releaseDate), 'Release Date')}
             </div>
-            <h1 style={{paddingLeft: '7vw'}}>More Like This</h1>
+            <h1 className="details-title" style={{paddingLeft: '7vw'}}>
+              More Like This
+            </h1>
             <ul className="similar-movies">
-              {this.formatSimilarMoviesList(similarMovies.slice(0, 10)).map(
+              {this.formatSimilarMoviesList(similarMovies.slice(0, 6)).map(
                 eachMovie => (
                   <MovieItem
                     movie={eachMovie}

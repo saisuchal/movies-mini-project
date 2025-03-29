@@ -11,12 +11,13 @@
 .slick-container {
   width: 100%;
   border: 0px;
+  text-align: center;
 }
-.slick-track {
+.slick-item {
   display: flex;
   justify-content: center;
 }
-.slick-item {
+.slider-item-link {
   display: flex;
   justify-content: center;
 }

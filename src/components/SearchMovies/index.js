@@ -5,8 +5,6 @@ import Header from '../Header'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
 import MovieItem from '../MovieItem'
-import Footer from '../Footer'
-import MoviesContext from '../../context/MoviesContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -19,38 +17,56 @@ class SearchMovies extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     searchData: [],
+    searchValue: '',
   }
 
   componentDidMount() {
-    this.fetchSearchData()
+    const {location} = this.props
+    const {search} = location
+    const searchParams = new URLSearchParams(search)
+    const searchParameter = searchParams.get('search')
+    if (searchParameter !== null) {
+      this.fetchSearchData()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevSearch = prevProps.location.search
+    const prevSearchParams = new URLSearchParams(prevSearch)
+    const prevSearchParameter = prevSearchParams.get('search')
+    const {location} = this.props
+    const {search} = location
+    const searchParams = new URLSearchParams(search)
+    const searchParameter = searchParams.get('search')
+    if (searchParameter !== prevSearchParameter) {
+      this.fetchSearchData()
+    }
   }
 
   fetchSearchData = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const {location} = this.props
-    const searchParamsObject = new URLSearchParams(location.search)
-    const searchParams = searchParamsObject.get('search')
-    const searchUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchParams}`
+    const searchParams = new URLSearchParams(location.search)
+    const searchValue = searchParams.get('search')
+    const searchUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchValue}`
     const options = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    try {
-      const searchResponse = await fetch(searchUrl, options)
-      const search = await searchResponse.json()
-      if (searchResponse.ok) {
-        const searchData = this.searchCamelCase(search.results)
-        this.setState({
-          apiStatus: apiStatusConstants.success,
-          searchData,
-        })
-      } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
-      }
-    } catch (e) {
+
+    const searchResponse = await fetch(searchUrl, options)
+    const search = await searchResponse.json()
+    if (searchResponse.ok) {
+      const searchData = this.searchCamelCase(search.results)
+      this.setState({
+        apiStatus: apiStatusConstants.success,
+        searchData,
+        searchValue,
+      })
+    } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
@@ -65,48 +81,43 @@ class SearchMovies extends Component {
     return transformedData
   }
 
-  renderSearchResultsView = () => (
-    <MoviesContext.Consumer>
-      {value => {
-        const {searchData} = this.state
-        const {searchValue} = value
-        const SearchResults = () => (
-          <ul className="search-list">
-            {searchData.map(eachMovie => (
-              <MovieItem movie={eachMovie} key={eachMovie.id} />
-            ))}
-          </ul>
-        )
-        const NoResults = () => (
-          <div className="no-movies">
-            <img
-              src="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742729638/Group_7394_ts3m0y.png"
-              alt="no movies"
-            />
-            <p>Your search for {searchValue} did not find any matches.</p>
-          </div>
-        )
-        return searchData.length === 0 ? <NoResults /> : <SearchResults />
-      }}
-    </MoviesContext.Consumer>
-  )
+  renderSearchResultsView = () => {
+    const {searchData, searchValue} = this.state
+    const SearchResults = () => (
+      <ul className="search-list">
+        {searchData.map(eachMovie => (
+          <MovieItem movie={eachMovie} key={eachMovie.id} />
+        ))}
+      </ul>
+    )
+    const NoResults = () => (
+      <div className="no-movies">
+        <img
+          src="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742729638/Group_7394_ts3m0y.png"
+          alt="no movies"
+        />
+        <p>Your search for {searchValue} did not find any matches</p>
+      </div>
+    )
+    return searchData.length === 0 ? <NoResults /> : <SearchResults />
+  }
 
   renderSearchResults = () => {
     const {apiStatus} = this.state
     switch (true) {
       case apiStatus === apiStatusConstants.success:
         return this.renderSearchResultsView()
-      case apiStatus === apiStatusConstants.inProgress:
-        return <LoaderView height="80vh" />
       case apiStatus === apiStatusConstants.failure:
         return (
           <FailureView
             height="80vh"
-            retry={this.fetchData}
+            retry={this.fetchSearchData}
             imageHeight="40vh"
             imgUrl="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742840933/Background-Complete_nhwfz2.png"
           />
         )
+      case apiStatus === apiStatusConstants.inProgress:
+        return <LoaderView height="80vh" />
       default:
         return null
     }
@@ -117,7 +128,6 @@ class SearchMovies extends Component {
       <div className="search-page">
         <Header position="none" />
         <div>{this.renderSearchResults()}</div>
-        <Footer />
       </div>
     )
   }

@@ -1,19 +1,22 @@
 .profile-page {
   min-height: 100vh;
-  background-color: #131313;
+  background-color: #000000;
 }
 
 .profile-div {
-  padding: 5vw;
+  justify-content: center;
+  padding: 10vw;
   padding-top: 2vw;
-  background-color: white;
-  color: black;
+  background-color: rgb(3, 0, 0);
+  color: rgb(255, 255, 255);
   text-align: center;
+  height: 70vh;
 }
 
-.flex-row {
+.account-flex-row {
   display: flex;
   flex-direction: flex-row;
+  align-items: center;
 }
 
 .para-margin {
@@ -29,4 +32,24 @@
   border: 0px;
   font-size: 16px;
   font-weight: 700;
+  width: 100px;
+  margin: auto;
+}
+
+.account-heading {
+  font-size: 30px;
+  text-align: start;
+}
+
+.profile-div p {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .account-heading {
+    font-size: 18px;
+  }
+  .profile-div p {
+    font-size: 12px;
+  }
 }

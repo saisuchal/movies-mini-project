@@ -6,11 +6,8 @@
   height: 50vh;
   width: 100vw;
   padding: 7vw;
-  padding-bottom: 4vw;
+  padding-bottom: 2vw;
   color: white;
-}
-.random-overview-div {
-  position: relative;
 }
 .random-title {
   font-size: 72px;

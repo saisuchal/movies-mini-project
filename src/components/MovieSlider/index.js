@@ -59,11 +59,11 @@ const MovieSlider = props => {
         {data.map(eachMovie => {
           const {id, posterPath, title} = eachMovie
           return (
-            <Link to={`/movies/${id}`} key={id}>
-              <div className="slick-item">
+            <div className="slick-item" key={id}>
+              <Link to={`/movies/${id}`} className="slider-item-link">
                 <img className="slider-image" src={posterPath} alt={title} />
-              </div>
-            </Link>
+              </Link>
+            </div>
           )
         })}
       </Slider>
@@ -74,8 +74,6 @@ const MovieSlider = props => {
     switch (true) {
       case apiStatus === apiStatusConstants.success:
         return renderSliderView()
-      case apiStatus === apiStatusConstants.inProgress:
-        return <LoaderView height="25vh" />
       case apiStatus === apiStatusConstants.failure:
         return (
           <FailureView
@@ -85,6 +83,8 @@ const MovieSlider = props => {
             imgUrl="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742640688/alert-triangle_ue3kkq.png"
           />
         )
+      case apiStatus === apiStatusConstants.inProgress:
+        return <LoaderView height="25vh" />
       default:
         return null
     }

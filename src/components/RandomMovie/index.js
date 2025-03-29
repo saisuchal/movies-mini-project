@@ -33,8 +33,6 @@ const RandomMovie = props => {
   switch (true) {
     case apiStatus === apiStatusConstants.success:
       return randomMovieView
-    case apiStatus === apiStatusConstants.inProgress:
-      return <LoaderView height="50vh" />
     case apiStatus === apiStatusConstants.failure:
       return (
         <FailureView
@@ -44,6 +42,8 @@ const RandomMovie = props => {
           imgUrl="https://res.cloudinary.com/dahbfvpdn/image/upload/v1742640688/alert-triangle_ue3kkq.png"
         />
       )
+    case apiStatus === apiStatusConstants.inProgress:
+      return <LoaderView height="50vh" />
     default:
       return null
   }

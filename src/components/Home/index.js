@@ -40,19 +40,15 @@ class Home extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    try {
-      const trendingResponse = await fetch(trendingUrl, options)
-      const trending = await trendingResponse.json()
-      if (trendingResponse.ok) {
-        const trendingData = this.camelCase(trending.results)
-        this.setState({
-          trendingData,
-          trendingApiStatus: apiStatusConstants.success,
-        })
-      } else {
-        this.setState({trendingApiStatus: apiStatusConstants.failure})
-      }
-    } catch (e) {
+    const trendingResponse = await fetch(trendingUrl, options)
+    const trending = await trendingResponse.json()
+    if (trendingResponse.ok) {
+      const trendingData = this.camelCase(trending.results)
+      this.setState({
+        trendingData,
+        trendingApiStatus: apiStatusConstants.success,
+      })
+    } else {
       this.setState({trendingApiStatus: apiStatusConstants.failure})
     }
   }
@@ -69,22 +65,18 @@ class Home extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    try {
-      const originalsResponse = await fetch(originalsUrl, options)
-      const originals = await originalsResponse.json()
-      if (originalsResponse.ok) {
-        const originalsData = this.camelCase(originals.results)
-        const randomMovie =
-          originalsData[Math.floor(Math.random() * originalsData.length)]
-        this.setState({
-          originalsData,
-          randomMovie,
-          originalsApiStatus: apiStatusConstants.success,
-        })
-      } else {
-        this.setState({originalsApiStatus: apiStatusConstants.failure})
-      }
-    } catch (e) {
+    const originalsResponse = await fetch(originalsUrl, options)
+    const originals = await originalsResponse.json()
+    if (originalsResponse.ok) {
+      const originalsData = this.camelCase(originals.results)
+      const randomMovie =
+        originalsData[Math.floor(Math.random() * originalsData.length)]
+      this.setState({
+        originalsData,
+        randomMovie,
+        originalsApiStatus: apiStatusConstants.success,
+      })
+    } else {
       this.setState({originalsApiStatus: apiStatusConstants.failure})
     }
   }
